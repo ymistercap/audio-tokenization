@@ -7,7 +7,7 @@ const App = () => {
   const [name, setName] = useState("");
   const [ipfsHash, setIpfsHash] = useState("");
   const [price, setPrice] = useState("");
-  const contractAddress = "YOUR_CONTRACT_ADDRESS";
+  const contractAddress = "CONTRACT_ADDRESS";
 
   const provider = new ethers.providers.Web3Provider(window.ethereum);
   const signer = provider.getSigner();
@@ -39,7 +39,7 @@ const App = () => {
     );
     await tx.wait();
     alert("Token Created!");
-    loadAudioFiles(); // Recharge la liste après la création d'un nouveau token
+    loadAudioFiles();
   };
 
   const purchaseToken = async (tokenId) => {
@@ -49,7 +49,7 @@ const App = () => {
     });
     await tx.wait();
     alert("Token Purchased!");
-    loadAudioFiles(); // Recharge la liste après l'achat d'un token
+    loadAudioFiles();
   };
 
   return (
