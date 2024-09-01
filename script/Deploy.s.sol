@@ -7,7 +7,7 @@ import "../src/AudioToken.sol";
 contract DeployAudioToken is Script {
     function run() external {
         vm.startBroadcast();
-        new AudioToken();
+        new AudioToken(msg.sender);
         vm.stopBroadcast();
     }
 }

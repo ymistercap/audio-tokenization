@@ -2,7 +2,7 @@
 pragma solidity ^0.8.0;
 
 import "../lib/openzeppelin-contracts/contracts/access/Ownable.sol";
-import "../lib/openzeppelin-contracts/contracts/token/ERC721";
+import "../lib/openzeppelin-contracts/contracts/token/ERC721/ERC721.sol";
 
 contract AudioToken is ERC721, Ownable {
     uint256 public tokenCounter;
@@ -15,13 +15,13 @@ contract AudioToken is ERC721, Ownable {
 
     mapping(uint256 => AudioFile) public audioFiles;
 
-    constructor() ERC721("AudioToken", "ATK") {
+    constructor(address initialOwner) ERC721("AudioToken", "ATK") Ownable(initialOwner) {
         tokenCounter = 0;
     }
 
     function createAudioToken(string memory _name, string memory _ipfsHash, uint256 _price) public onlyOwner {
         uint256 newTokenId = tokenCounter;
-        _safeMint(msg.sender, newTokenId);
+        _mint(msg.sender, newTokenId);
         audioFiles[newTokenId] = AudioFile(_name, _ipfsHash, _price);
         tokenCounter += 1;
     }

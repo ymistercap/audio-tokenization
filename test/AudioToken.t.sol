@@ -8,7 +8,7 @@ contract AudioTokenTest is Test {
     AudioToken token;
 
     function setUp() public {
-        token = new AudioToken();
+        token = new AudioToken(address(this)); 
     }
 
     function testCreateAudioToken() public {
