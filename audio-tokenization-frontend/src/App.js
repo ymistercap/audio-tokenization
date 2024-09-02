@@ -134,9 +134,6 @@ const App = () => {
               <strong>Name:</strong> {file.name}
             </p>
             <p>
-              <strong>IPFS Hash:</strong> {file.ipfsHash}
-            </p>
-            <p>
               <strong>Price:</strong> {file.price} ETH
             </p>
             <button
