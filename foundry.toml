@@ -1,0 +1,7 @@
+[profile.default]
+src = "src"
+out = "out"
+libs = ["lib"]
+
+[profile.rpc]
+url = "https://sepolia.infura.io/v3/5f0be05752e84888ac66a745129a02fa"
