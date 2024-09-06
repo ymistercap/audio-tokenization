@@ -9,7 +9,7 @@ const App = () => {
   const [name, setName] = useState("");
   const [ipfsHash, setIpfsHash] = useState("");
   const [price, setPrice] = useState("");
-  const contractAddress = "0xB73242850526BD0bC9a115DeC75a1354888de8Af";
+  const contractAddress = "0xC7500B277faBe9F4a90E84CBC71fA5412630De13";
 
   useEffect(() => {
     const connectWalletAndLoadData = async () => {
@@ -57,7 +57,7 @@ const App = () => {
     setOwnedFiles(ownedFiles);
   };
 
-  const createAudioToken = async (contract) => {
+  const createAudioToken = async (contract, signer) => {
     try {
       const tx = await contract.createAudioToken(
         name,
@@ -66,13 +66,13 @@ const App = () => {
       );
       await tx.wait();
       alert("Token Created!");
-      loadAudioFiles(contract);
+      loadAudioFiles(contract, signer);
     } catch (error) {
       console.error("Failed to create token:", error);
     }
   };
 
-  const purchaseToken = async (contract, tokenId) => {
+  const purchaseToken = async (contract, tokenId, signer) => {
     try {
       const tokenPrice = audioFiles[tokenId].price;
       const tx = await contract.purchaseToken(tokenId, {
@@ -80,7 +80,7 @@ const App = () => {
       });
       await tx.wait();
       alert("Token Purchased!");
-      loadAudioFiles(contract);
+      loadAudioFiles(contract, signer);
     } catch (error) {
       console.error("Failed to purchase token:", error);
     }
@@ -99,7 +99,7 @@ const App = () => {
             AudioToken.abi,
             signer
           );
-          await createAudioToken(contract);
+          await createAudioToken(contract, signer);
         }}
       >
         <input
